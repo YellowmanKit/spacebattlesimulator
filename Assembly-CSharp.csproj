@@ -60,9 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Cam.cs" />
-    <Compile Include="Assets\Script\Canv.cs" />
+    <Compile Include="Assets\Script\Canvas\Canv.cs" />
+    <Compile Include="Assets\Script\Canvas\Prepare.cs" />
     <Compile Include="Assets\Script\Main.cs" />
     <Compile Include="Assets\Script\Ref.cs" />
+    <Compile Include="Assets\Script\Technology\Tech.cs" />
+    <Compile Include="Assets\Script\Technology\TechTree.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/wk931/OneDrive/桌面/Projects/Unity/spacebattlesimulator/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
