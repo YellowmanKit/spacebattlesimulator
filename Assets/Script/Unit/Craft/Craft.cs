@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Craft : Unit {
@@ -8,7 +9,7 @@ public abstract class Craft : Unit {
 	protected override void OnAlphaZero(){ DestroyCraft(); }
 
 	protected void DestroyCraft(){
-		gameObject.SetActive(false);
+		craftPool.Destroyed(gameObject);
 	}
 
 }

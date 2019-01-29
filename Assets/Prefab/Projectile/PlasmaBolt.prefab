@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4815372894063310}
   - component: {fileID: 212083365304430418}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4418138880756454}
   - component: {fileID: 198015899008450950}
   - component: {fileID: 199502531347027228}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: OnHitEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,13 +55,13 @@ GameObject:
   - component: {fileID: 70061864148142224}
   - component: {fileID: 50168904152661976}
   - component: {fileID: 114825115768963358}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: PlasmaBolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4418138880756454
 Transform:
   m_ObjectHideFlags: 1
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060a954071635584eb8e7ef863e47989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initSpeed: 15
+  speed: 12
   damage: 10
 --- !u!198 &198015899008450950
 ParticleSystem:

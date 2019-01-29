@@ -16,7 +16,7 @@ public class CustomInput : Script {
 
 	float next;
 	void GetTarget(){
-		if(time < next){ return; }
+		if(time < next || game.phase != Phase.Battle){ return; }
 		ByClick();
 		ByTouch();
 	}
@@ -33,6 +33,7 @@ public class CustomInput : Script {
 		CastRay(ray);
 	}
 
+	public float last;
 	public Vector2 target;
 	void CastRay(Ray ray){
 		RaycastHit2D hit = Physics2D.Raycast (ray.origin, ray.direction, 100f, uiLayer);
@@ -41,6 +42,7 @@ public class CustomInput : Script {
 			EmitParticle ();
 		}
 		next = time + 0.1f;
+		last = time;
 	}
 
 	public ParticleSystem onGet;

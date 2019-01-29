@@ -5,6 +5,7 @@ public abstract class Unit : Script {
 
 	protected Rigidbody2D rb { get { return GetComponent<Rigidbody2D>(); } }
 	protected SpriteRenderer sprite { get { return GetComponentInChildren<SpriteRenderer>(); }}
+	protected bool dead{ get { return GetComponent<Hitpoint>().isDead; } }
 
 	protected float targetAlpha = 1;
 	protected float minDelta = 0.005f;
@@ -27,11 +28,6 @@ public abstract class Unit : Script {
 	public void SetAllCollidersStatus(bool active) {
 		foreach(Collider2D collider in GetComponents<Collider2D>()) { collider.enabled = active; }
 	}
-
-	public float xMax { get { return cam.width / 2; }}
-	public float xMin { get { return xMax * -1; }}
-	public float yMax { get { return cam.height / 2; }}
-	public float yMin { get { return yMax * -1; }}
 
 	protected float x { get { return transform.position.x; } }
 	protected float y { get { return transform.position.y; } }

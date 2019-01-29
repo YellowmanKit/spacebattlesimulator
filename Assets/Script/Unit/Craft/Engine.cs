@@ -4,6 +4,7 @@ using UnityEngine;
 public class Engine : Craft {
 
 	void FixedUpdate(){
+		if(dead){ return; }
 		Accelerate ();
 		Brake ();
 	}
@@ -16,8 +17,8 @@ public class Engine : Craft {
 	public float acceleration;
 	float engineForce { get { return rb.mass * acceleration; } }
 	void Accelerate(){
-		Vector2 diff = destination - (Vector2)transform.position;
-		Vector2 forceToAdd = Vector3.Normalize(diff) * engineForce * Mathf.Clamp(diff.magnitude, 0f, 3f);
+		Vector2 delta = destination - (Vector2)transform.position;
+		Vector2 forceToAdd = Vector3.Normalize(delta) * engineForce * Mathf.Clamp(delta.magnitude, 0f, 3f);
 		rb.AddForce (forceToAdd);
 	}
 

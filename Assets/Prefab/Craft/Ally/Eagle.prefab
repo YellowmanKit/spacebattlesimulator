@@ -113,7 +113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1666362800628738
 GameObject:
   m_ObjectHideFlags: 1
@@ -302,10 +302,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSpawns:
   - {x: 0, y: 0}
-  coolDown: 1
-  prewarm: 1
-  variation: 0
-  projectile: {fileID: 1468992282917406, guid: f410464864787524dab0b6af882e348b, type: 2}
+  coolDown: 2
+  prewarm: 3
+  variation: 1
+  projectile: 0
   chargeEffect: {fileID: 198654716068968832}
 --- !u!114 &114147976960175254
 MonoBehaviour:
@@ -319,8 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  maxHp: 300
-  isDead: 0
+  maxHp: 100
   destroyedEffect: {fileID: 198823196340964336}
 --- !u!114 &114333407352788698
 MonoBehaviour:
@@ -333,6 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141ce5217447a254cbdc488b57c4076e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  preferY: -3.5
+  targetCraft: {fileID: 0}
 --- !u!114 &114525497277807496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,8 +346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {x: 0, y: 0}
-  acceleration: 10
-  maxSpeed: 5
+  acceleration: 6
+  maxSpeed: 3
   brakeDistance: 1
   brakeFactor: 0.95
 --- !u!198 &198126576559920156

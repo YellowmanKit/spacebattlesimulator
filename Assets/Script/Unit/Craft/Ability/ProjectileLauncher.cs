@@ -3,13 +3,9 @@ using UnityEngine;
 
 public class ProjectileLauncher : Ability {
 
-	void OnEnable(){
-		Prewarm();
-	}
+	protected override bool shallUse{ get { return true; } }
 
-	protected override bool shallUse(){ return true; }
-
-	public GameObject projectile;
+	public PType projectile;
 	public ParticleSystem chargeEffect;
 	protected override void UseAbility(){
 		chargeEffect.Play();
@@ -26,7 +22,7 @@ public class ProjectileLauncher : Ability {
 	void Launch(){
 		if(time < launchTime){ return; }
 		launchTime = float.MaxValue;
-		Instantiate(projectile, transform.position, transform.rotation);
+		projectilePool.Spawn(projectile, transform);
 	}
 
 }

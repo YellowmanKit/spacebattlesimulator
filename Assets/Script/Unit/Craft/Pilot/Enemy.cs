@@ -3,13 +3,16 @@ using UnityEngine;
 
 public class Enemy : Pilot {
 
-	public float engageDistance;
-	public Transform targetCraft;
+	protected override float spawnY{ get{ return yMax + Random.Range(0.5f, 1.5f); } }
+	protected override Vector2 startPosition{ get{ return new Vector2(0f, 3.5f); } }
+
 	protected override void SetDestination(){
-		if(!targetCraft || !targetCraft.gameObject.activeSelf){
-			targetCraft = ClosestOpponent(GameObject.FindGameObjectsWithTag("Ally"));
-		}
-		engine.SetDestination(new Vector2(targetCraft.position.x, targetCraft.position.y + engageDistance));
+		TrackTarget();
+	}
+
+	void Update(){
+		SearchTarget("Enemy");
+		Destination();
 	}
 
 }

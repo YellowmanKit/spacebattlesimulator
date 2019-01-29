@@ -22,13 +22,13 @@ GameObject:
   - component: {fileID: 70385392190285082}
   - component: {fileID: 50093529128286074}
   - component: {fileID: 114394751238802340}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: NeutronBolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1271339706741002
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4236372531152436}
   - component: {fileID: 198348902435771084}
   - component: {fileID: 199889912174792430}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: OnHitEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4530992268105886}
   - component: {fileID: 212574741716078086}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060a954071635584eb8e7ef863e47989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initSpeed: 12
+  speed: 10
   damage: 10
 --- !u!198 &198348902435771084
 ParticleSystem:

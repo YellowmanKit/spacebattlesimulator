@@ -4,25 +4,23 @@ using UnityEngine;
 public class Hitpoint : Craft {
 
 	public float hp, maxHp;
-	public bool isDead;
+	public bool isDead { get { return hp <= 0f; } }
 	void OnEnable(){
 		SetAllCollidersStatus(true);
 		hp = maxHp;
-		isDead = false;
 		targetAlpha = 1;
 	}
 
 	public void TakeDamage(float damage){
 		SetAlpha(0.5f);
 		hp -= damage;
-		if(hp <= 0f){ HitpointDroppedToZero(); }
+		if(isDead){ OnDead(); }
 	}
 
 	public ParticleSystem destroyedEffect;
-	void HitpointDroppedToZero(){
+	void OnDead(){
 		SetAllCollidersStatus(false);
 		destroyedEffect.Play();
-		isDead = true;
 		targetAlpha = 0;
 	}
 
