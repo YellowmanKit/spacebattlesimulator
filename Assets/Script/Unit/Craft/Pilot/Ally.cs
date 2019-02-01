@@ -13,7 +13,7 @@ public class Ally : Pilot {
 	}
 
 	void Update(){
-		SearchTarget("Ally");
+		SearchTarget();
 		Destination();
 	}
 

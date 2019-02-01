@@ -6,8 +6,7 @@ public abstract class Pilot : Script {
 
 	protected Engine engine { get { return gameObject.GetComponent<Engine>(); } }
 
-	protected float variant = 0.5f;
-	protected float randomize { get { return Random.Range(-variant, variant); } }
+	protected float randomize { get { return Random.Range(-0.5f, 0.5f); } }
 
 	protected abstract float spawnY{ get; }
 	protected abstract Vector2 startPosition{ get; }
@@ -20,7 +19,7 @@ public abstract class Pilot : Script {
 	protected abstract void SetDestination ();
 	protected void Destination (){
 		if(time < next){ return; }
-		next = time + 0.2f;
+		next = time + 0.25f;
 		SetDestination();
 	}
 
@@ -28,9 +27,9 @@ public abstract class Pilot : Script {
 	public Transform targetCraft;
 	protected bool targetExist { get { return targetCraft && targetCraft.gameObject.activeSelf; } }
 
-	protected void SearchTarget(string side){
+	protected void SearchTarget(){
 		if(targetExist){ return; }
-		targetCraft = ClosestRival(side);
+		targetCraft = ClosestRival(gameObject.tag);
 	}
 
 	protected void TrackTarget(){

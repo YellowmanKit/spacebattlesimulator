@@ -308,7 +308,7 @@ MonoBehaviour:
   shotSpawns:
   - {x: 0, y: 0}
   coolDown: 3
-  prewarm: 3
+  prewarm: 1
   variation: 1
   projectile: 1
   chargeEffect: {fileID: 198383990179852998}

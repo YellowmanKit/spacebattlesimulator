@@ -18,26 +18,31 @@ public class CraftSpawn : Pool {
 	void InitAllyPool(){
 		AddPool("Ally");
 		AddType("Ally", "Active", null);
-		foreach(AllyType type in System.Enum.GetValues(typeof(AllyType))){
+		foreach(AType type in System.Enum.GetValues(typeof(AType))){
 			AddType("Ally", type.ToString(), allyPrefab[(int)type]); }
 	}
 
 	void InitEnemyPool(){
 		AddPool("Enemy");
 		AddType("Enemy", "Active", null);
-		foreach(EnemyType type in System.Enum.GetValues(typeof(EnemyType))){
+		foreach(EType type in System.Enum.GetValues(typeof(EType))){
 			AddType("Enemy", type.ToString(), enemyPrefab[(int)type]); }
 	}
 
 	public void Spawn(string side, string type){
 		GameObject craft = Fetch(side, type);
 		craft.SetActive(true);
-		List<GameObject> activePool = pool[craft.tag]["Active"];
-		activePool.Add(craft);
+		pool[side.ToString()]["Active"].Add(craft);
 	}
 
-	public void SpawnAlly(AllyType type){ Spawn("Ally", type.ToString()); }
-	public void SpawnEnemy(EnemyType type){ Spawn("Enemy", type.ToString()); }
+	public void SpawnAlly(AType type, int amount){
+		for(int i=0;i<amount;i++){
+		Spawn("Ally", type.ToString()); }
+	}
+	public void SpawnEnemy(EType type, int amount){
+		for(int i=0;i<amount;i++){
+		Spawn("Enemy", type.ToString()); }
+	}
 
 	public void Destroyed(GameObject craft){
 		craft.SetActive(false);
@@ -45,7 +50,7 @@ public class CraftSpawn : Pool {
 		activePool.Remove(craft);
 		if(activePool.Count == 0 && game.phase == Phase.Battle){
 			if(craft.tag == "Ally"){ game.GameOver(); }
-			else{ game.WaveCleared(); }
+			else if(game.phase == Phase.Battle){ game.WaveCleared(); }
 		}
 	}
 
@@ -61,14 +66,14 @@ public class CraftSpawn : Pool {
 		Sort(pool["Enemy"]["Active"]);
 	}
 
-	public void PrewarmAll(){ BroadcastMessage("Prewarm"); }
+	public void PrewarmAllWeapons(){ BroadcastMessage("Prewarm"); }
 
 }
 
-public enum AllyType {
+public enum AType {
 	Eagle
 }
 
-public enum EnemyType {
+public enum EType {
 	Bat
 }

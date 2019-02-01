@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,20 +9,40 @@ public class Reward : UI {
 	void Awake(){ Reward.instance = this; }
 
 	protected override void OnShow(){ game.phase = Phase.Reward; SetReward(); }
-	protected override void OnAlphaZero(){ game.NextWave(); content.SetActive(false); }
+	protected override void OnAlphaZero(){ game.NextWave(); }
 
 	void Start(){ Hide(); }
 
 	public Text[] rewardText;
 	void SetReward(){
-		for(int i=0;i<3;i++){
-			rewardText[i].text = "Reward" + i;
-		}
+		rewardText[0].text = "Recruit 3 eagles immediately";
+		rewardText[1].text = "Recruit 5 eagles over 5 turns";
+		rewardText[2].text = "Level up all existing eagles";
 	}
 
+	List<KeyValuePair<AType, int>> pendingRecruit = new	List<KeyValuePair<AType, int>>();
 	public void RewardPicked(int index){
+		switch(index){
+			case 0:
+				craftPool.SpawnAlly(AType.Eagle, 5);
+				break;
+			case 1:
+				pendingRecruit.Add(new KeyValuePair<AType, int>(AType.Eagle, game.waveCount + 5));
+				break;
+			case 2:
+				break;
+		}
+		PendingRecruit();
 		Hide();
 	}
 
+	void PendingRecruit(){
+		for(int i=0;i<pendingRecruit.Count;i++){
+			KeyValuePair<AType, int> pair = pendingRecruit[i];
+			if(pair.Value > game.waveCount){
+			craftPool.SpawnAlly(pair.Key, 1);}
+			if(pair.Value == game.waveCount){ pendingRecruit.Remove(pair); i--; }
+		}
+	}
 
 }

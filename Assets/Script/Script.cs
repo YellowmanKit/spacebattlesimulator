@@ -15,6 +15,7 @@ public abstract class Script : MonoBehaviour {
 	protected Entry entry { get { return Entry.instance; } }
 	protected Reward reward { get { return Reward.instance; } }
 	protected Battle battle { get { return Battle.instance; } }
+	protected End end { get { return End.instance; } }
 
 	protected float time { get { return Time.timeSinceLevelLoad; } }
 	protected float deltaTime { get { return Time.deltaTime; } }
@@ -29,5 +30,5 @@ public abstract class Script : MonoBehaviour {
 	protected int enemyLayer { get { return 1 << 9; } }
 	protected int allyBoltLayer { get { return 1 << 10; } }
 	protected int enemyBoltLayer { get { return 1 << 11; } }
-	
+
 }

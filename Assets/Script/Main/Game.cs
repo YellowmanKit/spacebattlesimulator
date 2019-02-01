@@ -14,32 +14,28 @@ public class Game : Script {
 	}
 
 	void InitAlly(){
-		for(int i=0;i<5;i++){
-		craftPool.SpawnAlly(AllyType.Eagle);}
+		craftPool.SpawnAlly(AType.Eagle, 1);
 	}
 
 	public int waveCount;
 	public void NextWave(){
 		if(phase != Phase.Reward){ return; }
+		waveCount++;
 		StartCoroutine(WaveRoutine());
 	}
 	IEnumerator WaveRoutine(){
-		waveCount++;
-		battle.Show();
-		craftPool.PrewarmAll();
-		for(int i=0;i<5;i++){
-			yield return new WaitForSeconds(0.2f);
-			craftPool.SpawnEnemy(EnemyType.Bat);
-		}
+		battle.ShowForSeconds(2f);
+		craftPool.PrewarmAllWeapons();
+		yield return new WaitForSeconds(1f);
+		craftPool.SpawnEnemy(EType.Bat, waveCount);
 	}
 
 	public void WaveCleared(){
-		phase = Phase.Reward;
 		reward.Show();
 	}
 
 	public void GameOver(){
-
+		end.Show();
 	}
 
 }
@@ -47,5 +43,6 @@ public class Game : Script {
 public enum Phase {
 	Entry,
 	Reward,
-	Battle
+	Battle,
+	GameOver
 }

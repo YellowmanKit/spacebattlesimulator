@@ -6,8 +6,8 @@ public abstract class Ability : Script {
 	void OnEnable(){ Prewarm(); }
 
 	public Vector2[] shotSpawns;
-	public float coolDown, prewarm, variation;
-	float randomize { get { return Random.Range (-variation, variation); } }
+	public float coolDown, prewarm;
+	float randomize { get { return Random.Range (-1f, 1f); } }
 
 	protected float next;
 	public void Prewarm(){ next = time + prewarm + randomize; }

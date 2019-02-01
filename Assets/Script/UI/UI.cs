@@ -9,17 +9,20 @@ public abstract class UI : Script {
 
 	protected abstract void OnShow();
 	public void Show(){ cg.interactable = true; cg.alpha = 0f; targetAlpha = 1f; content.SetActive(true); OnShow(); }
-	public void Hide(){ cg.interactable = false; targetAlpha = 0f; }
+	public void Hide(){ cg.interactable = false; targetAlpha = 0f; hideTime = float.MaxValue; }
+	protected float hideTime = float.MaxValue;
+	protected void NextHide(){ if(time > hideTime){ Hide(); } }
+	public void ShowForSeconds(float sec){ Show(); hideTime = time + sec; }
 
 	protected float targetAlpha;
 	protected abstract void OnAlphaZero();
-	protected bool alphaZero { get { return cg.alpha <= 0.01f; }}
+	protected bool alphaZero { get { return cg.alpha <= 0.01f; } }
 	protected void Alpha(){
 		if(alphaZero && targetAlpha == 0f){ return; }
 		float delta = targetAlpha - cg.alpha;
 		cg.alpha += delta * deltaTime * 5f;
-		if(alphaZero){ OnAlphaZero(); }
+		if(alphaZero){ OnAlphaZero(); content.SetActive(false); }
 	}
 
-	void Update(){ Alpha(); }
+	void Update(){ Alpha(); NextHide(); }
 }

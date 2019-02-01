@@ -7,10 +7,10 @@ public class Entry : UI {
 	void Awake(){ Entry.instance = this; }
 
 	protected override void OnShow(){ game.phase = Phase.Entry; }
-	protected override void OnAlphaZero(){ game.StartGame(); content.SetActive(false); }
+	protected override void OnAlphaZero(){ game.StartGame(); }
 
 	void Start(){ Show(); }
 
-	public void EnterGame(){ Hide(); }
+	public void Enter(){ Hide(); }
 
 }

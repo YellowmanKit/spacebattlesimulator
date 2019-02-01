@@ -11,7 +11,7 @@ public class Enemy : Pilot {
 	}
 
 	void Update(){
-		SearchTarget("Enemy");
+		SearchTarget();
 		Destination();
 	}
 
