@@ -17,18 +17,14 @@ public class Reward : UI {
 	void SetReward(){
 		rewardText[0].text = "Recruit 3 eagles immediately";
 		rewardText[1].text = "Recruit 5 eagles over 5 turns";
-		rewardText[2].text = "Level up all existing eagles";
+		rewardText[2].text = "";
 	}
 
-	List<KeyValuePair<AType, int>> pendingRecruit = new	List<KeyValuePair<AType, int>>();
+	List<KeyValuePair<AType, int>> pending = new	List<KeyValuePair<AType, int>>();
 	public void RewardPicked(int index){
 		switch(index){
-			case 0:
-				craftPool.SpawnAlly(AType.Eagle, 5);
-				break;
-			case 1:
-				pendingRecruit.Add(new KeyValuePair<AType, int>(AType.Eagle, game.waveCount + 5));
-				break;
+			case 0: craftPool.SpawnAlly(AType.Eagle, 3); break;
+			case 1: pending.Add(new KeyValuePair<AType, int>(AType.Eagle, game.waveCount + 5)); break;
 			case 2:
 				break;
 		}
@@ -37,11 +33,10 @@ public class Reward : UI {
 	}
 
 	void PendingRecruit(){
-		for(int i=0;i<pendingRecruit.Count;i++){
-			KeyValuePair<AType, int> pair = pendingRecruit[i];
-			if(pair.Value > game.waveCount){
-			craftPool.SpawnAlly(pair.Key, 1);}
-			if(pair.Value == game.waveCount){ pendingRecruit.Remove(pair); i--; }
+		for(int i=0;i<pending.Count;i++){
+			KeyValuePair<AType, int> pair = pending[i];
+			if(pair.Value > game.waveCount){ craftPool.SpawnAlly(pair.Key, 1); }
+			if(pair.Value == game.waveCount){ pending.Remove(pair); i--; }
 		}
 	}
 

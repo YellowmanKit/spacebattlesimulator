@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Craft : Unit {
 
 	protected Engine engine { get { return GetComponent<Engine>(); }}
+	protected Hitpoint hitpoint { get { return GetComponent<Hitpoint>(); }}
 
 	protected override void OnAlphaZero(){ DestroyCraft(); }
 

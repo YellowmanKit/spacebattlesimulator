@@ -9,10 +9,10 @@ public abstract class UI : Script {
 
 	protected abstract void OnShow();
 	public void Show(){ cg.interactable = true; cg.alpha = 0f; targetAlpha = 1f; content.SetActive(true); OnShow(); }
-	public void Hide(){ cg.interactable = false; targetAlpha = 0f; hideTime = float.MaxValue; }
-	protected float hideTime = float.MaxValue;
-	protected void NextHide(){ if(time > hideTime){ Hide(); } }
-	public void ShowForSeconds(float sec){ Show(); hideTime = time + sec; }
+	public void Hide(){ cg.interactable = false; targetAlpha = 0f; nextHide = float.MaxValue; }
+	protected float nextHide = float.MaxValue;
+	protected void NextHide(){ if(time > nextHide){ Hide(); } }
+	public void ShowForSeconds(float seconds){ Show(); nextHide = time + seconds; }
 
 	protected float targetAlpha;
 	protected abstract void OnAlphaZero();

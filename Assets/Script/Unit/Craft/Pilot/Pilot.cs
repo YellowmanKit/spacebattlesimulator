@@ -5,25 +5,30 @@ using UnityEngine;
 public abstract class Pilot : Script {
 
 	protected Engine engine { get { return gameObject.GetComponent<Engine>(); } }
-
 	protected float randomize { get { return Random.Range(-0.5f, 0.5f); } }
 
 	protected abstract float spawnY{ get; }
 	protected abstract Vector2 startPosition{ get; }
+	protected float spawnTime;
 	void OnEnable(){
+		spawnTime = time;
 		transform.position = new Vector2(Random.Range(xMin, xMax), spawnY);
 		ToCoordinate(startPosition);
+	}
+
+	void Update(){
+		SearchTarget();
+		Destination();
 	}
 
 	float next;
 	protected abstract void SetDestination ();
 	protected void Destination (){
 		if(time < next){ return; }
-		next = time + 0.25f;
+		next = time + 0.2f;
 		SetDestination();
 	}
 
-	public float preferY;
 	public Transform targetCraft;
 	protected bool targetExist { get { return targetCraft && targetCraft.gameObject.activeSelf; } }
 

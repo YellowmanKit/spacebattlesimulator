@@ -14,7 +14,8 @@ public class Game : Script {
 	}
 
 	void InitAlly(){
-		craftPool.SpawnAlly(AType.Eagle, 1);
+		//craftPool.SpawnAlly(AType.Eagle, 1);
+		craftPool.SpawnAlly(AType.Beatle, 1);
 	}
 
 	public int waveCount;
@@ -23,11 +24,12 @@ public class Game : Script {
 		waveCount++;
 		StartCoroutine(WaveRoutine());
 	}
+
 	IEnumerator WaveRoutine(){
 		battle.ShowForSeconds(2f);
 		craftPool.PrewarmAllWeapons();
 		yield return new WaitForSeconds(1f);
-		craftPool.SpawnEnemy(EType.Bat, waveCount);
+		craftPool.SpawnEnemy(EType.Bat,(int)(waveCount * 2f));
 	}
 
 	public void WaveCleared(){

@@ -38,6 +38,7 @@ public class CraftSpawn : Pool {
 	public void SpawnAlly(AType type, int amount){
 		for(int i=0;i<amount;i++){
 		Spawn("Ally", type.ToString()); }
+		main.UpdateScale(AType.Eagle, amount, false);
 	}
 	public void SpawnEnemy(EType type, int amount){
 		for(int i=0;i<amount;i++){
@@ -48,6 +49,8 @@ public class CraftSpawn : Pool {
 		craft.SetActive(false);
 		List<GameObject> activePool = pool[craft.tag]["Active"];
 		activePool.Remove(craft);
+		if(craft.tag == "Ally"){ main.UpdateScale(ParseEnum<AType>(craft.name), 1, true); }
+
 		if(activePool.Count == 0 && game.phase == Phase.Battle){
 			if(craft.tag == "Ally"){ game.GameOver(); }
 			else if(game.phase == Phase.Battle){ game.WaveCleared(); }
@@ -61,7 +64,7 @@ public class CraftSpawn : Pool {
 	float next;
 	void Update(){
 		if(time < next){ return; }
-		next = time + 1f;
+		next = time + 0.5f;
 		Sort(pool["Ally"]["Active"]);
 		Sort(pool["Enemy"]["Active"]);
 	}
@@ -71,7 +74,8 @@ public class CraftSpawn : Pool {
 }
 
 public enum AType {
-	Eagle
+	Eagle,
+	Beatle
 }
 
 public enum EType {

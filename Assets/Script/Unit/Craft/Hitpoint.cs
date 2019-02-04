@@ -6,9 +6,10 @@ public class Hitpoint : Craft {
 	public float hp, maxHp;
 	public bool isDead { get { return hp <= 0f; } }
 	void OnEnable(){
-		SetAllCollidersStatus(true);
+		SetAllColliders(true);
 		hp = maxHp;
 		targetAlpha = 1;
+		SetAlpha(1f);
 	}
 
 	public void TakeDamage(float damage){
@@ -19,13 +20,11 @@ public class Hitpoint : Craft {
 
 	public ParticleSystem destroyedEffect;
 	void OnDead(){
-		SetAllCollidersStatus(false);
+		SetAllColliders(false);
 		destroyedEffect.Play();
 		targetAlpha = 0;
 	}
 
-	void Update(){
-		Alpha();
-	}
+	void Update(){ Alpha(); }
 
 }

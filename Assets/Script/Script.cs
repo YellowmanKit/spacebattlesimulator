@@ -9,8 +9,8 @@ public abstract class Script : MonoBehaviour {
 	protected CraftSpawn craftPool { get { return CraftSpawn.instance; } }
 	protected ProjectileSpawn projectilePool { get { return ProjectileSpawn.instance; } }
 
-	protected CustomCamera cam { get { return CustomCamera.instance; } }
-	protected CustomInput input { get { return CustomInput.instance; } }
+	protected MyCamera cam { get { return MyCamera.instance; } }
+	protected MyInput input { get { return MyInput.instance; } }
 
 	protected Entry entry { get { return Entry.instance; } }
 	protected Reward reward { get { return Reward.instance; } }
@@ -31,4 +31,5 @@ public abstract class Script : MonoBehaviour {
 	protected int allyBoltLayer { get { return 1 << 10; } }
 	protected int enemyBoltLayer { get { return 1 << 11; } }
 
+	protected T ParseEnum<T>(string value){ return (T) System.Enum.Parse(typeof(T), value, true); }
 }

@@ -309,7 +309,6 @@ MonoBehaviour:
   - {x: 0, y: 0}
   coolDown: 3
   prewarm: 1
-  variation: 1
   projectile: 1
   chargeEffect: {fileID: 198383990179852998}
 --- !u!114 &114484938631643032
@@ -339,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preferY: 3.5
   targetCraft: {fileID: 0}
+  delay: 1.25
 --- !u!114 &114887724576360924
 MonoBehaviour:
   m_ObjectHideFlags: 1

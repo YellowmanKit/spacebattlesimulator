@@ -26,6 +26,7 @@ public abstract class Pool : Script {
 	protected GameObject AddObject(string key, string type, GameObject prefab){
 		if(!prefab){ return null; }
 		GameObject clone = Instantiate(prefab, transform.Find(type));
+		clone.name = prefab.name;
 		pool[key][type].Add(clone);
 		clone.SetActive(false);
 		return clone;

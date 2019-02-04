@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public abstract class Ability : Script {
+public abstract class Ability : Unit {
+
+	protected override void OnAlphaZero(){ }
 
 	void OnEnable(){ Prewarm(); }
 
-	public Vector2[] shotSpawns;
 	public float coolDown, prewarm;
 	float randomize { get { return Random.Range (-1f, 1f); } }
 
 	protected float next;
 	public void Prewarm(){ next = time + prewarm + randomize; }
 
-	bool dead { get { return GetComponentInParent<Hitpoint>().isDead; } }
 	bool canUse { get { return time > next && !dead && game.phase == Phase.Battle; } }
 	protected abstract bool shallUse { get; }
 

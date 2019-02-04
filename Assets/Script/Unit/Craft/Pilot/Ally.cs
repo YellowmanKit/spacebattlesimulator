@@ -12,9 +12,4 @@ public class Ally : Pilot {
 		else{ ToCoordinate(startPosition); }
 	}
 
-	void Update(){
-		SearchTarget();
-		Destination();
-	}
-
 }
