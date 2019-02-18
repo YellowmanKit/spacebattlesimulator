@@ -7,14 +7,18 @@ public class Shield : Ability {
 	protected override bool shallUse{ get { return true; } }
 	protected override void UseAbility(){ }
 
-	void OnEnable(){
+	public float hp, maxHp;
+	void OnEnable(){ Recharge(); }
+
+	public override void Prewarm(){ Recharge(); }
+
+	void Recharge(){
 		SetAllColliders(true);
 		SetAlpha(0f);
 		targetAlpha = 0f;
 		hp = maxHp;
 	}
 
-	public float hp, maxHp;
 	public bool isDown { get { return hp <= 0f; } }
 	public void TakeDamage(float damage){
 		SetAlpha(sr.color.a + 0.3f);
@@ -23,7 +27,6 @@ public class Shield : Ability {
 	}
 
 	void OnDown(){
-		targetAlpha = 0f;
 		SetAllColliders(false);
 	}
 

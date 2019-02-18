@@ -5,6 +5,9 @@ public class Launcher : Ability {
 
 	protected override bool shallUse{ get { return true; } }
 
+	public float prewarm;
+	public override void Prewarm(){ next = time + prewarm + randomize; }
+
 	public PType projectile;
 	public ParticleSystem chargeEffect;
 	protected override void UseAbility(){

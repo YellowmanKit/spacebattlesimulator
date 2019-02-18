@@ -9,8 +9,8 @@ public abstract class Script : MonoBehaviour {
 	protected CraftSpawn craftPool { get { return CraftSpawn.instance; } }
 	protected ProjectileSpawn projectilePool { get { return ProjectileSpawn.instance; } }
 
-	protected MyCamera cam { get { return MyCamera.instance; } }
-	protected MyInput input { get { return MyInput.instance; } }
+	protected Cam cam { get { return Cam.instance; } }
+	protected Command command { get { return Command.instance; } }
 
 	protected Entry entry { get { return Entry.instance; } }
 	protected Reward reward { get { return Reward.instance; } }
